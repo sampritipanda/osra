@@ -21,8 +21,10 @@ describe Organization, type: :model do
     it { is_expected.to validate_uniqueness_of :name }
 
     it { is_expected.to validate_presence_of :country }
-    it { is_expected.to validate_presence_of :status_id  }
+    it { is_expected.to validate_presence_of :status  }
+
     it { is_expected.to belong_to :status }
+    it { is_expected.to have_many :sponsors }
 
     it { is_expected.to allow_value(Date.current, Date.yesterday).for :start_date }
     it { is_expected.not_to allow_value(Date.tomorrow).for :start_date }

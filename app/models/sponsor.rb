@@ -38,10 +38,6 @@ class Sponsor < ActiveRecord::Base
       "5%02d" % branch.code
     elsif organization.present?
       "8%02d" % organization.code
-    else
-      errors[:base] << "must belong to a branch or an organization, but not both"
-      raise ActiveRecord::RecordInvalid.new(self)
     end
   end
-
 end
