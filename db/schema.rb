@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925133202) do
+ActiveRecord::Schema.define(version: 20140926150218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -205,12 +205,6 @@ ActiveRecord::Schema.define(version: 20140925133202) do
   add_index "sponsorships", ["orphan_id"], name: "index_sponsorships_on_orphan_id", using: :btree
   add_index "sponsorships", ["sponsor_id", "orphan_id"], name: "index_sponsorships_on_sponsor_id_and_orphan_id", unique: true, using: :btree
   add_index "sponsorships", ["sponsor_id"], name: "index_sponsorships_on_sponsor_id", using: :btree
-
-  create_table "spreadsheets", force: true do |t|
-    t.integer "orphan_list_id"
-    t.string  "style"
-    t.binary  "file_contents"
-  end
 
   create_table "statuses", force: true do |t|
     t.integer "code"
