@@ -21,7 +21,7 @@ class Sponsor < ActiveRecord::Base
   acts_as_sequenced scope: [:organization_id, :branch_id]
 
   private
-  
+
   def belongs_to_one_branch_or_organization
     unless branch.blank? ^ organization.blank?
       errors.add(:organization, "must belong to a branch or an organization, but not both")
