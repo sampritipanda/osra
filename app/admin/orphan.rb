@@ -17,7 +17,7 @@ ActiveAdmin.register Orphan do
                                              :province_id, :neighborhood, :street, :details]
 
   form do |f|
-    f.inputs 'Orphan Deatils' do
+    f.inputs 'Orphan Details' do
       f.input :name
       f.input :date_of_birth, as: :datepicker
       f.input :gender, as: :select, collection: %w(Male Female)
@@ -72,7 +72,7 @@ ActiveAdmin.register Orphan do
   end
 
   show title: :full_name do |orphan|
-    panel 'Orphan Deatils' do
+    panel 'Orphan Details' do
       attributes_table_for orphan do
         row :date_of_birth
         row :gender
