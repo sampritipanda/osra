@@ -34,20 +34,17 @@ ActiveAdmin.register OrphanList do
 
   controller do
     def create
-
-      p = get_partner
-      orphan_list = p.orphan_lists.build(orphan_list_params)
-      orphan_list.orphan_count = 0
+      orphan_list = partner.orphan_lists.build(orphan_list_params)
 
       if orphan_list.save
-        redirect_to admin_partner_path(p), notice: "Orphan List (#{orphan_list.osra_num}) was successfully imported."
+        redirect_to admin_partner_path(partner), notice: "Orphan List (#{orphan_list.osra_num}) was successfully imported."
       else
         render action: :new
       end
     end
 
     def new
-      redirect_to admin_partner_path(params[:partner_id]),
+      redirect_to admin_partner_path(partner),
                   alert: "Partner is not Active. Orphan List cannot be uploaded." and return unless get_partner.active?
       new!
     end
@@ -60,12 +57,12 @@ ActiveAdmin.register OrphanList do
 
     private
 
-    def get_partner
+    def partner
       Partner.find(params[:partner_id])
     end
 
     def orphan_list_params
-      params.require(:orphan_list).permit(:spreadsheet)
+      params.require(:orphan_list).permit(:spreadsheet).merge(orphan_count: 0)
     end
   end
 end
