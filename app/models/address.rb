@@ -4,5 +4,9 @@ class Address < ActiveRecord::Base
   validates :neighborhood, presence: true
 
   belongs_to :province
-  belongs_to :orphan
+
+  def orphan
+    orphan_id = orphan_original_address_id || orphan_current_address_id
+    Orphan.find(orphan_id)
+  end
 end
