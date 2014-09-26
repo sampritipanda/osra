@@ -1,5 +1,4 @@
 ActiveAdmin.register OrphanList do
-
   actions :index, :new, :create
   belongs_to :partner
 
